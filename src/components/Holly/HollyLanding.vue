@@ -1,9 +1,7 @@
 <template>
   <div class="landing">
     <div class="container">
-      <router-link class="logo-link" :to="'/hollyMap'" exact>
-        <img class="logo" src="../../assets/holly/logo-final.png">
-      </router-link>
+      <Logo />
       <div>
         <h1>What are you keen on?</h1>
       </div>
@@ -29,9 +27,12 @@
 </template>
 
 <script>
+import Logo from "./nav/Logo.vue";
 export default {
   name: "HollyLanding",
-  components: {}
+  components: {
+    Logo
+  }
 };
 </script>
 
@@ -50,26 +51,12 @@ export default {
   background: rgba(0, 0, 0, 0.5);
 }
 .container {
-  /* background: yellow; */
   width: 30%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
-.logo-link {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.logo {
-  width: 30%;
-  margin: auto;
-  transition: transform 0.2s ease-in-out;
-}
-.logo:hover {
-  transform: scale(1.05);
 }
 h1 {
   color: #fff;
@@ -98,6 +85,5 @@ h1 {
 }
 .button img:hover {
   border: rgba(255, 255, 255, 0.8) solid 6px;
-  border-radius: 50%;
 }
 </style>

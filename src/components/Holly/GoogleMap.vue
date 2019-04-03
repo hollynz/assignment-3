@@ -47,8 +47,8 @@ export default {
   width: 100vw;
   min-height: 100vh;
   position: relative;
-    z-index: -1;
-    top: 0;
-    left: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }
 </style>

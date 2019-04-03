@@ -3,20 +3,23 @@
 <template>
   <div>
     <GoogleMap :mapConfig="mapConfig"/>
-    <HollyLanding />
+    <!-- <HollyLanding /> -->
+    <HollyInfoScreen />
   </div>
 </template>
 
 <script>
 import GoogleMap from "./GoogleMap";
 import HollyLanding from "./HollyLanding.vue";
+import HollyInfoScreen from "./HollyInfoScreen.vue";
 import { mapSettings } from "./constants/mapSettings";
 
 export default {
   name: "HollyMap",
   components: {
     GoogleMap,
-    HollyLanding
+    HollyLanding,
+    HollyInfoScreen
   },
   computed: {
     mapConfig() {
