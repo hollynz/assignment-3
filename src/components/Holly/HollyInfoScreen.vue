@@ -1,20 +1,43 @@
 <template>
   <div class="lhs-nav">
-    <Logo />
+    <Logo/>
+    <div :class="{buttonsLanding: landing, buttonsInfo: info}">
+      <ButtonBike />
+      <ButtonHiking />
+      <ButtonWater />
+      <ButtonActivities />
+    </div>
   </div>
 </template>
 
 <script>
 import Logo from "./nav/Logo.vue";
+import ButtonBike from "./nav/ButtonBike.vue";
+import ButtonHiking from "./nav/ButtonHiking.vue";
+import ButtonWater from "./nav/ButtonWater.vue";
+import ButtonActivities from "./nav/ButtonActivities.vue";
 export default {
   name: "HollyInfoScreen",
   components: {
-    Logo
+    Logo,
+    ButtonBike,
+    ButtonHiking,
+    ButtonWater,
+    ButtonActivities
+  },
+  data: function() {
+    return {
+        landing: true,
+        info: false
+    }
   }
 };
 </script>
 
-<style scoped>
+<style scoped src="./constants/navCSS.css">
+</style>
+
+<style>
 .lhs-nav {
   position: absolute;
   left: 0;
@@ -22,6 +45,8 @@ export default {
   z-index: 2;
   width: 25vw;
   height: 100vh;
+  overflow: hidden;
   background: #c7800e;
 }
 </style>
+

@@ -1,0 +1,66 @@
+/* Landing page styles */
+    .logoLinkLanding {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .logoLanding {
+        width: 30%;
+        margin: auto;
+        transition: transform 0.2s ease-in-out;
+    }
+    .logoLanding:hover {
+        transform: scale(1.05);
+    }
+    .buttonsLanding {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttonLanding {
+        display: flex;
+        justify-content: center;
+    }
+    .buttonLanding img {
+        width: 80%;
+        border: transparent solid 6px;
+        border-radius: 50%;
+    }
+    .buttonLanding img:hover {
+        border: rgba(255, 255, 255, 0.8) solid 6px;
+    }
+
+/* InfoScreen styles */
+    .logoLinkInfo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .logoInfo {
+        width: 30%;
+        margin: auto;
+        transition: transform 0.2s ease-in-out;
+    }
+    .logoInfo:hover {
+        transform: scale(1.05);
+    }
+    .buttonsInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttonInfo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttonInfo img {
+        width: 50%;
+        border: transparent solid 6px;
+        border-radius: 50%;
+    }
+    .buttonInfo img:hover {
+        border: rgba(255, 255, 255, 0.8) solid 6px;
+    }

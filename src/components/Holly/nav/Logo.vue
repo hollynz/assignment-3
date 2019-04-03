@@ -1,29 +1,20 @@
 <template>
-  <router-link class="logo-link" :to="'/hollyMap'" exact>
-    <img class="logo" src="../../../assets/holly/logo-final.png">
+  <router-link :class="{logoLinkLanding: landing, logoLinkInfo: info}" :to="'/hollyMap'" exact>
+    <img :class="{logoLanding: landing, logoInfo: info}" src="../../../assets/holly/logo-final.png">
   </router-link>
 </template>
 
 <script>
 export default {
-    name: "Logo"
+    name: "Logo",
+    data: function() {
+      return {
+        landing: true,
+        info: false
+      }
+    }
 };
 </script>
 
-<style scoped>
-.logo-link {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.logo {
-  width: 30%;
-  margin: auto;
-  transition: transform 0.2s ease-in-out;
-}
-.logo:hover {
-  transform: scale(1.05);
-}
-
-
+<style scoped src="../constants/navCSS.css">
 </style>
