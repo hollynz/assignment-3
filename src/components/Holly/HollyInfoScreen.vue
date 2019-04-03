@@ -2,10 +2,10 @@
   <div class="lhs-nav">
     <Logo/>
     <div :class="{buttonsLanding: landing, buttonsInfo: info}">
-      <ButtonBike />
-      <ButtonHiking />
-      <ButtonWater />
-      <ButtonActivities />
+      <ButtonBike @$categorySelected="categorySelected" />
+        <ButtonHiking @$categorySelected="categorySelected" />
+        <ButtonWater @$categorySelected="categorySelected" />
+        <ButtonActivities @$categorySelected="categorySelected" />
     </div>
   </div>
 </template>
@@ -29,6 +29,12 @@ export default {
     return {
         landing: true,
         info: false
+    }
+  },
+  methods: {
+    categorySelected: function(id) {
+      console.log("in landing: " + id);
+      this.$emit("$categorySelected", id);
     }
   }
 };

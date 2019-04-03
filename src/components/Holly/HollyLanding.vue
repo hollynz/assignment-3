@@ -9,10 +9,10 @@
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       </div>
       <div :class="{buttonLanding: landing, buttonInfo: info}">
-        <ButtonBike />
-        <ButtonHiking />
-        <ButtonWater />
-        <ButtonActivities />
+        <ButtonBike @$categorySelected="categorySelected" />
+        <ButtonHiking @$categorySelected="categorySelected" />
+        <ButtonWater @$categorySelected="categorySelected" />
+        <ButtonActivities @$categorySelected="categorySelected" />
       </div>
     </div>
   </div>
@@ -37,7 +37,13 @@ export default {
   data: function() {
     return {
       landing: true,
-        info: false
+      info: false
+    }
+  },
+  methods: {
+    categorySelected: function(id) {
+      console.log("in landing: " + id);
+      this.$emit("$categorySelected", id);
     }
   }
 };

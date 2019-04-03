@@ -3,8 +3,8 @@
 <template>
   <div>
     <GoogleMap :mapConfig="mapConfig"/>
-    <!-- <HollyLanding /> -->
-    <HollyInfoScreen />
+    <!-- <HollyLanding @$categorySelected="categorySelected" /> -->
+    <HollyInfoScreen @$categorySelected="categorySelected" />
   </div>
 </template>
 
@@ -21,6 +21,11 @@ export default {
     HollyLanding,
     HollyInfoScreen
   },
+  data: function() {
+    return {
+      category: ""
+    }
+  },
   computed: {
     mapConfig() {
       return {
@@ -28,11 +33,16 @@ export default {
         center: { lat: -38.1368, lng: 176.2497 }
       };
     }
+  },
+  methods: {
+    categorySelected: function(id) {
+      console.log("in map: " + id);
+    }
   }
 };
 </script>
 
 
-<style>
+<style scoped>
 
 </style>
