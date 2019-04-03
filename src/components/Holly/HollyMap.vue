@@ -3,8 +3,8 @@
 <template>
   <div>
     <GoogleMap :mapConfig="mapConfig"/>
-    <HollyLanding />
-    <!-- <HollyInfoScreen /> -->
+    <!-- <HollyLanding /> -->
+    <HollyInfoScreen />
   </div>
 </template>
 
