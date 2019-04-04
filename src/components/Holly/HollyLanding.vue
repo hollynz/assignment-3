@@ -8,7 +8,7 @@
       <div class="md-form mt-0 search">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       </div>
-      <div :class="{buttonLanding: landing, buttonInfo: info}">
+      <div :class="{buttonLanding: this.$parent.$parent.$data.landing, buttonInfo: this.$parent.$parent.$data.info}">
         <ButtonBike @$categorySelected="categorySelected" />
         <ButtonHiking @$categorySelected="categorySelected" />
         <ButtonWater @$categorySelected="categorySelected" />
@@ -34,15 +34,8 @@ export default {
     ButtonWater,
     ButtonActivities
   },
-  data: function() {
-    return {
-      landing: true,
-      info: false
-    }
-  },
   methods: {
     categorySelected: function(id) {
-      console.log("in landing: " + id);
       this.$emit("$categorySelected", id);
     }
   }

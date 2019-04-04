@@ -2,9 +2,9 @@
 
 <template>
   <div>
-    <GoogleMap :mapConfig="mapConfig"/>
-    <!-- <HollyLanding @$categorySelected="categorySelected" /> -->
-    <HollyInfoScreen @$categorySelected="categorySelected" />
+    <GoogleMap @$landingFalse="landingFalse" :landing="landing" :category="category" :mapConfig="mapConfig"/>
+    <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
+    <HollyInfoScreen @$goHome="goHome" @$categorySelected="categorySelected" v-if="this.$parent.$data.info" />
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
   },
   data: function() {
     return {
-      category: ""
+      category: "",
+      landing: false
     }
   },
   computed: {
@@ -36,7 +37,17 @@ export default {
   },
   methods: {
     categorySelected: function(id) {
-      console.log("in map: " + id);
+      this.$parent.$data.landing = false;
+      this.$parent.$data.info = true;
+      this.category = id;
+    },
+    goHome: function() {
+      this.$parent.$data.landing = true;
+      this.$parent.$data.info = false;
+      this.landing = true;
+    },
+    landingFalse: function() {
+      this.landing = false;
     }
   }
 };

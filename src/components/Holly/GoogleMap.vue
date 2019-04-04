@@ -4,19 +4,23 @@
     <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot :google="google" :map="map"/>
     </template>
-    <button @click="addMarkers([{position: { lat: -38.1368, lng: 176.2497 }},{position: { lat: -38.14, lng: 176.25 }},{position: { lat: -38.13, lng: 176.23 }}])">add</button>
-    <button @click="deleteMarkers">delete</button>
   </div>
 </template>
 
 <script>
 import GoogleMapsApiLoader from "google-maps-api-loader";
 import { API_KEY } from "./constants/config.js";
+import { CLIENT_ID } from "./constants/config.js";
+import { CLIENT_SECRET } from "./constants/config.js";
+import { API_CATEGORIES } from "./constants/data.js";
+import { ROTORUA } from "./constants/data.js";
 
 export default {
   name: "GoogleMap",
   props: {
-    mapConfig: Object
+    mapConfig: Object,
+    category: "",
+    landing: false
   },
 
   data() {
@@ -24,9 +28,8 @@ export default {
       google: null,
       map: null,
       apiKey: API_KEY,
-      // marker: {
-      //   position: { lat: -38.1368, lng: 176.2497 }
-      // },
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
       markers: []
     };
   },
@@ -38,19 +41,48 @@ export default {
     this.google = googleMapApi;
     this.initializeMap();
   },
-
+  watch: {
+    category() {
+      this.getData();
+    },
+    landing() {
+      this.deleteMarkers();
+      this.$emit("$landingFalse");
+    }
+  },
   methods: {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
       this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
     },
-    addMarkers(locations) {
+    getData() {
+      this.$http
+        .get(
+          "https://api.foursquare.com/v2/venues/search?" +
+            "ll=" +
+            ROTORUA +
+            "&categoryId=" +
+            API_CATEGORIES[this.category].categories +
+            "&radius=50000" +
+            "&client_id=" +
+            this.clientID +
+            "&client_secret=" +
+            this.clientSecret +
+            "&v=20190404"
+        )
+        .then(function(result) {
+          this.deleteMarkers();
+          this.addMarkers(result);
+        });
+    },
+    addMarkers(data) {
+      let markers = data.body.response.venues;
       let thisGoogleMap = this.google.maps;
       let thisMap = this.map;
       let thisMarkers = this.markers;
-      $.each(locations, function(i, location) {
+      $.each(markers, function(i, marker) {
         let newMarker = new thisGoogleMap.Marker({
-          position: location.position,
+          position: { lat: marker.location.lat, lng: marker.location.lng },
           map: thisMap
         });
         thisMarkers.push(newMarker);
@@ -61,7 +93,7 @@ export default {
       $.each(thisMarkers, function(i, marker) {
         marker.setMap(null);
       });
-      thisMarkers = [];
+      this.markers = [];
     }
   }
 };

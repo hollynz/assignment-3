@@ -1,11 +1,11 @@
 <template>
   <div class="lhs-nav">
-    <Logo/>
-    <div :class="{buttonsLanding: landing, buttonsInfo: info}">
-      <ButtonBike @$categorySelected="categorySelected" />
-        <ButtonHiking @$categorySelected="categorySelected" />
-        <ButtonWater @$categorySelected="categorySelected" />
-        <ButtonActivities @$categorySelected="categorySelected" />
+    <Logo @$goHome="goHome" />
+    <div :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}">
+      <ButtonBike @$categorySelected="categorySelected"/>
+      <ButtonHiking @$categorySelected="categorySelected"/>
+      <ButtonWater @$categorySelected="categorySelected"/>
+      <ButtonActivities @$categorySelected="categorySelected"/>
     </div>
   </div>
 </template>
@@ -25,16 +25,12 @@ export default {
     ButtonWater,
     ButtonActivities
   },
-  data: function() {
-    return {
-        landing: true,
-        info: false
-    }
-  },
   methods: {
     categorySelected: function(id) {
-      console.log("in landing: " + id);
       this.$emit("$categorySelected", id);
+    },
+    goHome: function() {
+      this.$emit("$goHome");
     }
   }
 };
@@ -43,7 +39,7 @@ export default {
 <style scoped src="./constants/navCSS.css">
 </style>
 
-<style>
+<style scoped>
 .lhs-nav {
   position: absolute;
   left: 0;
@@ -53,6 +49,11 @@ export default {
   height: 100vh;
   overflow: hidden;
   background: #c7800e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 </style>
 

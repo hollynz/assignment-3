@@ -1,66 +1,44 @@
-/* Landing page styles */
-    .logoLinkLanding {
+/* Landing and InfoScreen styles */
+    .logoLinkLanding, .logoLinkInfo {
         width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
+        align-content: center;
+        cursor: pointer;
     }
-    .logoLanding {
+    .logoLanding, .logoInfo {
         width: 30%;
         margin: auto;
         transition: transform 0.2s ease-in-out;
     }
-    .logoLanding:hover {
+    .logoLanding:hover, .logoInfo:hover {
         transform: scale(1.05);
     }
-    .buttonsLanding {
+    .buttonsLanding, .buttonsInfo {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
     }
-    .buttonLanding {
+    .buttonsLanding {
+        flex-direction: row;
+    }
+    .buttonsInfo {
+        flex-direction: column;
+    }
+    .buttonLanding, .buttonInfo {
         display: flex;
         justify-content: center;
     }
-    .buttonLanding img {
+    .buttonInfo {
+        align-items: center;
+    }
+    .buttonLanding img, .buttonInfo img {
         width: 80%;
         border: transparent solid 6px;
         border-radius: 50%;
+        cursor: pointer;
     }
-    .buttonLanding img:hover {
-        border: rgba(255, 255, 255, 0.8) solid 6px;
-    }
-
-/* InfoScreen styles */
-    .logoLinkInfo {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .logoInfo {
-        width: 30%;
-        margin: auto;
-        transition: transform 0.2s ease-in-out;
-    }
-    .logoInfo:hover {
-        transform: scale(1.05);
-    }
-    .buttonsInfo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .buttonInfo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .buttonInfo img {
-        width: 50%;
-        border: transparent solid 6px;
-        border-radius: 50%;
-    }
-    .buttonInfo img:hover {
+    .buttonLanding img:hover, .buttonInfo img:hover {
         border: rgba(255, 255, 255, 0.8) solid 6px;
     }
