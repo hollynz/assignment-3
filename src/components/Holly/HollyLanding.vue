@@ -42,9 +42,6 @@ export default {
 };
 </script>
 
-<style scoped src="./constants/navCSS.css">
-</style>
-
 <style scoped>
 .landing {
   position: absolute;
@@ -55,7 +52,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
 }
@@ -64,7 +61,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 h1 {
@@ -78,4 +75,7 @@ h1 {
   margin-top: 2%;
   box-shadow: 0px 0px 10px 2px #291E02;
 }
+</style>
+
+<style scoped src="./constants/navCSS.css">
 </style>
