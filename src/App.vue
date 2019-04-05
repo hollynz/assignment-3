@@ -12,8 +12,8 @@ export default {
   },
   data: function() {
     return {
-      landing: false,
-      info: true
+      landing: true,
+      info: false
     }
   }
 };

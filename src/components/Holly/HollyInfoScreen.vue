@@ -1,25 +1,32 @@
 <template>
   <div class="lhs-nav">
     <Logo @$goHome="goHome" />
+    <SearchBar />
     <div :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}">
-      <ButtonBike @$categorySelected="categorySelected"/>
-      <ButtonHiking @$categorySelected="categorySelected"/>
-      <ButtonWater @$categorySelected="categorySelected"/>
-      <ButtonActivities @$categorySelected="categorySelected"/>
+      <ButtonBike :buttonImgIsActive="category==0" @$categorySelected="categorySelected"/>
+      <ButtonHiking :buttonImgIsActive="category==1" @$categorySelected="categorySelected"/>
+      <ButtonWater :buttonImgIsActive="category==2" @$categorySelected="categorySelected"/>
+      <ButtonActivities :buttonImgIsActive="category==3" @$categorySelected="categorySelected"/>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from "./nav/Logo.vue";
+import SearchBar from "./nav/SearchBar.vue";
 import ButtonBike from "./nav/ButtonBike.vue";
 import ButtonHiking from "./nav/ButtonHiking.vue";
 import ButtonWater from "./nav/ButtonWater.vue";
 import ButtonActivities from "./nav/ButtonActivities.vue";
+
 export default {
   name: "HollyInfoScreen",
+  props: {
+    category: null
+  },
   components: {
     Logo,
+    SearchBar,
     ButtonBike,
     ButtonHiking,
     ButtonWater,

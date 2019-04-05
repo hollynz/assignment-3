@@ -1,8 +1,7 @@
 <template>
-  <div :class="{searchLanding: this.$parent.$parent.$parent.$data.landing, searchInfo: this.$parent.$parent.$parent.$data.info}">
-    <!-- <img @click="categorySelected" id="3" :class="{logoLanding: this.$parent.$parent.$parent.$data.landing, logoInfo: this.$parent.$parent.$parent.$data.info}" src="../../../assets/holly/button-activities.png">
-    <p>ACTIVITIES</p> -->
-  </div>
+    <div class="md-form mt-0" :class="{searchLanding: this.$parent.$parent.$parent.$data.landing, searchInfo: this.$parent.$parent.$parent.$data.info}">
+      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    </div>
 </template>
 
 <script>

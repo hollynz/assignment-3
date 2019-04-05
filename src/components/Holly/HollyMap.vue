@@ -1,10 +1,10 @@
 <!-- Parent component to everything: Holly (landing) and InfoScreen!!! -->
 
 <template>
-  <div>
+  <div class="home">
     <GoogleMap @$landingFalse="landingFalse" :landing="landing" :category="category" :mapConfig="mapConfig"/>
     <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
-    <HollyInfoScreen @$goHome="goHome" @$categorySelected="categorySelected" v-if="this.$parent.$data.info" />
+    <HollyInfoScreen @$goHome="goHome" @$categorySelected="categorySelected" :category="category" v-if="this.$parent.$data.info" />
   </div>
 </template>
 
@@ -55,5 +55,26 @@ export default {
 
 
 <style scoped>
+.home {
+font-family: 'Amatic SC', cursive;
+/* font-family: 'Cabin', sans-serif; */
+/* search */
+/* font-family: 'Cuprum', sans-serif; */
+/* font-family: 'Dokdo', cursive; */
+/* search? */
+/* font-family: 'Exo', sans-serif; */
+/* font-family: 'Indie Flower', cursive; */
+/* best */
+/* font-family: 'Istok Web', sans-serif; */
+/* font-family: 'Julius Sans One', sans-serif; */
+/* font-family: 'Nanum Gothic', sans-serif; */
+/* other best */
+/* font-family: 'Nobile', sans-serif; */
+/* font-family: 'Raleway', sans-serif; */
+/* font-family: 'Reenie Beanie', cursive; */
+/* font-family: 'Source Code Pro', monospace; */
+/* font-family: 'Spinnaker', sans-serif; */
+/* font-family: 'Viga', sans-serif; */
+}
 
 </style>
