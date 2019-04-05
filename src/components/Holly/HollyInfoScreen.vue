@@ -45,7 +45,7 @@ export default {
   left: 0;
   top: 0;
   z-index: 2;
-  width: 25vw;
+  width: 18vw;
   height: 100vh;
   overflow: hidden;
   background: #c7800e;

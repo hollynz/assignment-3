@@ -1,0 +1,20 @@
+<template>
+  <div :class="{searchLanding: this.$parent.$parent.$parent.$data.landing, searchInfo: this.$parent.$parent.$parent.$data.info}">
+    <!-- <img @click="categorySelected" id="3" :class="{logoLanding: this.$parent.$parent.$parent.$data.landing, logoInfo: this.$parent.$parent.$parent.$data.info}" src="../../../assets/holly/button-activities.png">
+    <p>ACTIVITIES</p> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SearchBar",
+  methods: {
+    // categorySelected: function(evt) {
+    //   this.$emit("$categorySelected", evt.target.id);
+    // }
+  }
+};
+</script>
+
+<style scoped src="../constants/navCSS.css">
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <div class="container">
+    <!-- <div class="container"> -->
       <Logo />
       <div>
         <h1>What are you keen on?</h1>
@@ -8,13 +8,13 @@
       <div class="md-form mt-0 search">
         <input class="form-control" type="text" placeholder="Search" aria-label="Search">
       </div>
-      <div :class="{buttonLanding: this.$parent.$parent.$data.landing, buttonInfo: this.$parent.$parent.$data.info}">
+      <div :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}">
         <ButtonBike @$categorySelected="categorySelected" />
         <ButtonHiking @$categorySelected="categorySelected" />
         <ButtonWater @$categorySelected="categorySelected" />
         <ButtonActivities @$categorySelected="categorySelected" />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -52,28 +52,9 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
-}
-.container {
-  width: 30%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-h1 {
-  color: #fff;
-}
-.search {
-  width: 28vw;
-}
-.search input {
-  font-size: 1.8em;
-  margin-top: 2%;
-  box-shadow: 0px 0px 10px 2px #291E02;
 }
 </style>
 

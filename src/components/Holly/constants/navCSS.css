@@ -1,44 +1,80 @@
 /* Landing and InfoScreen styles */
     .logoLinkLanding, .logoLinkInfo {
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         align-content: center;
         cursor: pointer;
+        margin: 3%;
+    }
+    .logoLinkLanding {
+        width: 50%;
+    }
+    .logoLinkInfo {
+        width: 100%;
     }
     .logoLanding, .logoInfo {
-        width: 30%;
         margin: auto;
         transition: transform 0.2s ease-in-out;
+    }
+    .logoLanding {
+        width: 20%;
+    }
+    .logoInfo {
+        width: 50%;
     }
     .logoLanding:hover, .logoInfo:hover {
         transform: scale(1.05);
     }
+    .search {
+        width: 28vw;
+      }
+    .search input {
+        font-size: 1.8em;
+        margin-top: 2%;
+        box-shadow: 0px 0px 10px 2px #291E02;
+    }
     .buttonsLanding, .buttonsInfo {
+        margin-top: 3%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .buttonsLanding {
+        width: 45%;
         flex-direction: row;
     }
     .buttonsInfo {
+        width: 100%;
         flex-direction: column;
     }
     .buttonLanding, .buttonInfo {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-    }
-    .buttonInfo {
         align-items: center;
+        color: #fff;
+        width: 100%;
     }
     .buttonLanding img, .buttonInfo img {
-        width: 80%;
+        display: flex;
+        width: 140px;
+        height: 140px;
+        margin-bottom: 4%;
         border: transparent solid 6px;
         border-radius: 50%;
         cursor: pointer;
     }
+    .buttonInfo img {
+        width: 100px;
+        height: 100px;
+    }
     .buttonLanding img:hover, .buttonInfo img:hover {
         border: rgba(255, 255, 255, 0.8) solid 6px;
     }
+    h1 {
+        color: #fff;
+        font-size: 3rem;
+        margin-bottom: 4%;
+    }
+      
