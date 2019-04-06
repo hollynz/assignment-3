@@ -13,7 +13,8 @@ import { API_KEY } from "./constants/config.js";
 import { CLIENT_ID } from "./constants/config.js";
 import { CLIENT_SECRET } from "./constants/config.js";
 import { API_CATEGORIES } from "./constants/data.js";
-import { ROTORUA } from "./constants/data.js";
+import { CENTER_POSITION } from "./constants/data.js";
+import { CENTER_LAT_LONG } from "./constants/data.js";
 
 export default {
   name: "GoogleMap",
@@ -53,14 +54,25 @@ export default {
   methods: {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
-      this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
+      this.map = new this.google.maps.Map(mapContainer, {
+        zoom: 11,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+        },
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT
+        },
+        center: { lat: CENTER_LAT_LONG[0], lng: CENTER_LAT_LONG[1] }
+      });
     },
     getData() {
       this.$http
         .get(
           "https://api.foursquare.com/v2/venues/search?" +
             "ll=" +
-            ROTORUA +
+            CENTER_POSITION +
             "&categoryId=" +
             API_CATEGORIES[this.category].categories +
             "&radius=50000" +

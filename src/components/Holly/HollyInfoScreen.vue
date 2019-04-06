@@ -1,13 +1,18 @@
 <template>
-  <div class="lhs-nav">
-    <Logo @$goHome="goHome" />
-    <SearchBar />
-    <div :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}">
-      <ButtonBike :buttonImgIsActive="category==0" @$categorySelected="categorySelected"/>
-      <ButtonHiking :buttonImgIsActive="category==1" @$categorySelected="categorySelected"/>
-      <ButtonWater :buttonImgIsActive="category==2" @$categorySelected="categorySelected"/>
-      <ButtonActivities :buttonImgIsActive="category==3" @$categorySelected="categorySelected"/>
+  <div class="info-screen">
+    <div class="lhs-nav">
+      <Logo @$goHome="goHome"/>
+      <SearchBar/>
+      <div
+        :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}"
+      >
+        <ButtonBike :buttonIsActive="category==0" @$categorySelected="categorySelected"/>
+        <ButtonHiking :buttonIsActive="category==1" @$categorySelected="categorySelected"/>
+        <ButtonWater :buttonIsActive="category==2" @$categorySelected="categorySelected"/>
+        <ButtonActivities :buttonIsActive="category==3" @$categorySelected="categorySelected"/>
+      </div>
     </div>
+    <ActivityInfoContainer class="activity-info-container" />
   </div>
 </template>
 
@@ -18,6 +23,7 @@ import ButtonBike from "./nav/ButtonBike.vue";
 import ButtonHiking from "./nav/ButtonHiking.vue";
 import ButtonWater from "./nav/ButtonWater.vue";
 import ButtonActivities from "./nav/ButtonActivities.vue";
+import ActivityInfoContainer from "./ActivityInfoContainer.vue";
 
 export default {
   name: "HollyInfoScreen",
@@ -30,7 +36,8 @@ export default {
     ButtonBike,
     ButtonHiking,
     ButtonWater,
-    ButtonActivities
+    ButtonActivities,
+    ActivityInfoContainer
   },
   methods: {
     categorySelected: function(id) {
@@ -47,6 +54,10 @@ export default {
 </style>
 
 <style scoped>
+.info-screen {
+  width: 100vw;
+  height: 100vh;
+}
 .lhs-nav {
   position: absolute;
   left: 0;
@@ -61,6 +72,10 @@ export default {
   align-items: center;
   align-content: center;
   justify-content: center;
+}
+.activity-info-container {
+  position: absolute;
+  z-index: 100;
 }
 </style>
 

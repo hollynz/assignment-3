@@ -58,6 +58,7 @@
     .buttonsInfo {
         width: 100%;
         flex-direction: column;
+        margin-top: 6%;
     }
     .buttonTitle {
         font-family: 'Spinnaker', sans-serif;
@@ -69,6 +70,14 @@
         align-items: center;
         color: #fff;
         width: 100%;
+    }
+    .buttonInfo {
+        padding-top: 5%;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .buttonIsActive {
+        background: rgba(0, 0, 0, 0.2);
     }
     .buttonImgLanding, .buttonImgInfo {
         display: flex;

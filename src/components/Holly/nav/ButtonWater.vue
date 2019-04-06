@@ -1,13 +1,14 @@
 
 <template>
   <div
-    :class="{buttonLanding: this.$parent.$parent.$parent.$data.landing, buttonInfo: this.$parent.$parent.$parent.$data.info}"
+    :class="{buttonLanding: this.$parent.$parent.$parent.$data.landing, buttonInfo: this.$parent.$parent.$parent.$data.info,
+            buttonIsActive: buttonIsActive}"
   >
     <img
       @click="categorySelected"
       id="2"
       :class="{buttonImgLanding: this.$parent.$parent.$parent.$data.landing, buttonImgInfo: this.$parent.$parent.$parent.$data.info,
-              buttonImgIsActive: buttonImgIsActive}"
+              buttonImgIsActive: buttonIsActive}"
       src="../../../assets/holly/button-water.png"
     >
     <p class="buttonTitle">WATER</p>
@@ -18,7 +19,7 @@
 export default {
   name: "ButtonWater",
   props: { 
-    buttonImgIsActive: false
+    buttonIsActive: false
   },
   methods: {
     categorySelected: function(evt) {

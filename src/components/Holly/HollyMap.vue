@@ -2,17 +2,29 @@
 
 <template>
   <div class="home">
-    <GoogleMap @$landingFalse="landingFalse" :landing="landing" :category="category" :mapConfig="mapConfig"/>
+    <GoogleMap
+      @$landingFalse="landingFalse"
+      :landing="landing"
+      :category="category"
+      :mapConfig="mapConfig"
+    />
     <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
-    <HollyInfoScreen @$goHome="goHome" @$categorySelected="categorySelected" :category="category" v-if="this.$parent.$data.info" />
+    <HollyInfoScreen
+      @$goHome="goHome"
+      @$categorySelected="categorySelected"
+      :category="category"
+      v-if="this.$parent.$data.info"
+    />
   </div>
 </template>
 
 <script>
-import GoogleMap from "./GoogleMap";
+import GoogleMapsApiLoader from "google-maps-api-loader";
+import GoogleMap from "./GoogleMap.vue";
 import HollyLanding from "./HollyLanding.vue";
 import HollyInfoScreen from "./HollyInfoScreen.vue";
-import { mapSettings } from "./constants/mapSettings";
+import { mapSettings } from "./constants/mapSettings.js";
+import { CENTER_LAT_LONG } from "./constants/data.js";
 
 export default {
   name: "HollyMap",
@@ -25,13 +37,13 @@ export default {
     return {
       category: "",
       landing: false
-    }
+    };
   },
   computed: {
     mapConfig() {
       return {
         ...mapSettings,
-        center: { lat: -38.1368, lng: 176.2497 }
+        center: { lat: CENTER_LAT_LONG[0], lng: CENTER_LAT_LONG[1] }
       };
     }
   },
@@ -56,25 +68,24 @@ export default {
 
 <style scoped>
 .home {
-font-family: 'Amatic SC', cursive;
-/* font-family: 'Cabin', sans-serif; */
-/* search */
-/* font-family: 'Cuprum', sans-serif; */
-/* font-family: 'Dokdo', cursive; */
-/* search? */
-/* font-family: 'Exo', sans-serif; */
-/* font-family: 'Indie Flower', cursive; */
-/* best */
-/* font-family: 'Istok Web', sans-serif; */
-/* font-family: 'Julius Sans One', sans-serif; */
-/* font-family: 'Nanum Gothic', sans-serif; */
-/* other best */
-/* font-family: 'Nobile', sans-serif; */
-/* font-family: 'Raleway', sans-serif; */
-/* font-family: 'Reenie Beanie', cursive; */
-/* font-family: 'Source Code Pro', monospace; */
-/* font-family: 'Spinnaker', sans-serif; */
-/* font-family: 'Viga', sans-serif; */
+  font-family: "Amatic SC", cursive;
+  /* font-family: 'Cabin', sans-serif; */
+  /* search */
+  /* font-family: 'Cuprum', sans-serif; */
+  /* font-family: 'Dokdo', cursive; */
+  /* search? */
+  /* font-family: 'Exo', sans-serif; */
+  /* font-family: 'Indie Flower', cursive; */
+  /* best */
+  /* font-family: 'Istok Web', sans-serif; */
+  /* font-family: 'Julius Sans One', sans-serif; */
+  /* font-family: 'Nanum Gothic', sans-serif; */
+  /* other best */
+  /* font-family: 'Nobile', sans-serif; */
+  /* font-family: 'Raleway', sans-serif; */
+  /* font-family: 'Reenie Beanie', cursive; */
+  /* font-family: 'Source Code Pro', monospace; */
+  /* font-family: 'Spinnaker', sans-serif; */
+  /* font-family: 'Viga', sans-serif; */
 }
-
 </style>
