@@ -12,7 +12,8 @@
         <ButtonActivities :buttonIsActive="category==3" @$categorySelected="categorySelected"/>
       </div>
     </div>
-    <ActivityInfoContainer class="activity-info-container" />
+    <!-- Transition on v-if?? -->
+    <ActivityInfoContainer v-if="markerIsActive" class="activity-info-container" />
   </div>
 </template>
 
@@ -28,7 +29,8 @@ import ActivityInfoContainer from "./ActivityInfoContainer.vue";
 export default {
   name: "HollyInfoScreen",
   props: {
-    category: null
+    category: null,
+    markerIsActive: false
   },
   components: {
     Logo,
@@ -55,8 +57,8 @@ export default {
 
 <style scoped>
 .info-screen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .lhs-nav {
   position: absolute;

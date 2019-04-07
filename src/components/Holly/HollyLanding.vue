@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <Logo/>
+    <Logo @$goHome="goHome"/>
     <div>
       <h1>What are you keen on?</h1>
     </div>
@@ -37,6 +37,10 @@ export default {
   methods: {
     categorySelected: function(id) {
       this.$emit("$categorySelected", id);
+    },
+    goHome: function() {
+      location.reload();
+      this.$emit('$goHome');
     }
   }
 };

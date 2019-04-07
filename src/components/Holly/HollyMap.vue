@@ -4,6 +4,7 @@
   <div class="home">
     <GoogleMap
       @$landingFalse="landingFalse"
+      @$markerClicked="markerClicked"
       :landing="landing"
       :category="category"
       :mapConfig="mapConfig"
@@ -13,6 +14,7 @@
       @$goHome="goHome"
       @$categorySelected="categorySelected"
       :category="category"
+      :markerIsActive="markerIsActive"
       v-if="this.$parent.$data.info"
     />
   </div>
@@ -36,7 +38,8 @@ export default {
   data: function() {
     return {
       category: "",
-      landing: false
+      landing: false,
+      markerIsActive: false
     };
   },
   computed: {
@@ -57,9 +60,13 @@ export default {
       this.$parent.$data.landing = true;
       this.$parent.$data.info = false;
       this.landing = true;
+      this.markerIsActive = false;
     },
     landingFalse: function() {
       this.landing = false;
+    },
+    markerClicked: function(data) {
+      this.markerIsActive = true;
     }
   }
 };

@@ -1,9 +1,9 @@
 <template>
   <div class="map">
     <div class="google-map" ref="googleMap"></div>
-    <template v-if="Boolean(this.google) && Boolean(this.map)">
+    <!-- <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot :google="google" :map="map"/>
-    </template>
+    </template>-->
   </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
     category: "",
     landing: false
   },
-
   data() {
     return {
       google: null,
@@ -34,7 +33,6 @@ export default {
       markers: []
     };
   },
-
   async mounted() {
     const googleMapApi = await GoogleMapsApiLoader({
       apiKey: this.apiKey
@@ -49,6 +47,7 @@ export default {
     landing() {
       this.deleteMarkers();
       this.$emit("$landingFalse");
+      this.initializeMap();
     }
   },
   methods: {
@@ -58,13 +57,29 @@ export default {
         zoom: 11,
         mapTypeControl: true,
         mapTypeControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT,
+          position: google.maps.ControlPosition.TOP_RIGHT
         },
         fullscreenControl: true,
         fullscreenControlOptions: {
           position: google.maps.ControlPosition.TOP_RIGHT
         },
+        streetViewControl: true,
+        streetViewControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_TOP
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_BOTTOM
+        },
         center: { lat: CENTER_LAT_LONG[0], lng: CENTER_LAT_LONG[1] }
+      });
+      this.map.getStreetView().setOptions({
+        addressControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER
+        },
+        panControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_TOP
+        }
       });
     },
     getData() {
@@ -88,21 +103,27 @@ export default {
         });
     },
     addMarkers(data) {
+      let that = this;
       let markers = data.body.response.venues;
-      let thisGoogleMap = this.google.maps;
-      let thisMap = this.map;
-      let thisMarkers = this.markers;
       $.each(markers, function(i, marker) {
-        let newMarker = new thisGoogleMap.Marker({
+        let newMarker = new that.google.maps.Marker({
           position: { lat: marker.location.lat, lng: marker.location.lng },
-          map: thisMap
+          map: that.map
         });
-        thisMarkers.push(newMarker);
+        newMarker.addListener("click", function(evt) {
+          // Smooth transition here somehow
+          that.map.setCenter(newMarker.getPosition());
+          that.map.setZoom(14);
+          // that.getActivityInfo(newMarker);
+          // Pass activity info to emit when it's working!!
+          that.$emit("$markerClicked", "data");
+        });
+        that.markers.push(newMarker);
       });
     },
     deleteMarkers() {
-      let thisMarkers = this.markers;
-      $.each(thisMarkers, function(i, marker) {
+      let that = this;
+      $.each(that.markers, function(i, marker) {
         marker.setMap(null);
       });
       this.markers = [];

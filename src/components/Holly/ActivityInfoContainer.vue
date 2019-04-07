@@ -1,6 +1,6 @@
 <template>
     <div class="activity-info-container">
-        test
+        <div>Close</div>
     </div>
 </template>
 
@@ -12,14 +12,19 @@ export default {
 
 <style scoped>
     .activity-info-container {
-        margin: auto;
-        background: blue;
-        height: 20vh;
-        width: 50%;
-        top: 25%;
+        background: #c7800e;
+        position: absolute;
+        z-index: 1000;
         right: 0;
-        height: 50vh;
-        width: 30vw;
+        bottom: 0;
+        top: 0;
+        margin: auto 0;
+        width: 25%;
+        height: 70%;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: solid #fff 10px;
+        border-right: none;
     }
 </style>
 
