@@ -7,12 +7,14 @@
       @$markerClicked="markerClicked"
       :landing="landing"
       :category="category"
+      :markerIsActive="markerIsActive"
       :mapConfig="mapConfig"
     />
     <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
     <HollyInfoScreen
       @$goHome="goHome"
       @$categorySelected="categorySelected"
+      @$closeInfoContainer="closeInfoContainer"
       :category="category"
       :markerIsActive="markerIsActive"
       v-if="this.$parent.$data.info"
@@ -67,6 +69,9 @@ export default {
     },
     markerClicked: function(data) {
       this.markerIsActive = true;
+    },
+    closeInfoContainer: function() {
+      this.markerIsActive = false;
     }
   }
 };

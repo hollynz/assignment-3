@@ -2,7 +2,7 @@
   <div class="landing">
     <Logo @$goHome="goHome"/>
     <div>
-      <h1>What are you keen on?</h1>
+      <h1>Choose your destiny:</h1>
     </div>
     <SearchBar/>
     <div

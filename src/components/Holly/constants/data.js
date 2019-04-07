@@ -23,3 +23,4 @@ export const API_CATEGORIES = [
 
 export const CENTER_POSITION = "-38.079881,176.271883";
 export const CENTER_LAT_LONG = [-38.1368, 176.2497];
+export const DEFAULT_ZOOM = 11;

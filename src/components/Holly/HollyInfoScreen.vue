@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- Transition on v-if?? -->
-    <ActivityInfoContainer v-if="markerIsActive" class="activity-info-container" />
+    <ActivityInfoContainer @$closeInfoContainer="closeInfoContainer" v-show="markerIsActive" class="activity-info-container" />
   </div>
 </template>
 
@@ -47,6 +47,9 @@ export default {
     },
     goHome: function() {
       this.$emit("$goHome");
+    },
+    closeInfoContainer: function() {
+      this.$emit('$closeInfoContainer');
     }
   }
 };

@@ -1,12 +1,17 @@
 <template>
     <div class="activity-info-container">
-        <div>Close</div>
+        <div @click="closeInfoContainer" class="close-button">Close</div>
     </div>
 </template>
 
 <script>
 export default {
     name: "ActivityInfoContainer",
+    methods: {
+        closeInfoContainer: function() {
+            this.$emit('$closeInfoContainer');
+        }
+    }
 }
 </script>
 
@@ -25,6 +30,12 @@ export default {
         border-bottom-left-radius: 20px;
         border: solid #fff 10px;
         border-right: none;
+    }
+    .close-button {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        left: 10px;
     }
 </style>
 

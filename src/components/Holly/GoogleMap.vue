@@ -15,13 +15,15 @@ import { CLIENT_SECRET } from "./constants/config.js";
 import { API_CATEGORIES } from "./constants/data.js";
 import { CENTER_POSITION } from "./constants/data.js";
 import { CENTER_LAT_LONG } from "./constants/data.js";
+import { DEFAULT_ZOOM } from "./constants/data.js";
 
 export default {
   name: "GoogleMap",
   props: {
     mapConfig: Object,
     category: "",
-    landing: false
+    landing: false,
+    markerIsActive: Boolean
   },
   data() {
     return {
@@ -41,20 +43,25 @@ export default {
     this.initializeMap();
   },
   watch: {
-    category() {
+    category: function() {
       this.getData();
     },
-    landing() {
+    landing: function() {
       this.deleteMarkers();
       this.$emit("$landingFalse");
       this.initializeMap();
+    },
+    markerIsActive: function() {
+      if (!this.markerIsActive) {
+        this.map.setZoom(DEFAULT_ZOOM);
+      }
     }
   },
   methods: {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
       this.map = new this.google.maps.Map(mapContainer, {
-        zoom: 11,
+        zoom: DEFAULT_ZOOM,
         mapTypeControl: true,
         mapTypeControlOptions: {
           position: google.maps.ControlPosition.TOP_RIGHT
