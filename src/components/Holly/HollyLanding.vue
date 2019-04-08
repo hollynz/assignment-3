@@ -43,7 +43,7 @@ export default {
       this.$emit('$goHome');
     },
     searchForQuery: function(query) {
-      this.$emit('searchForQuery', query);
+      this.$emit('$searchForQuery', query);
     }
   }
 };

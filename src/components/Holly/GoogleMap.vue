@@ -15,6 +15,7 @@ import { CLIENT_SECRET } from "./constants/config.js";
 import { API_CATEGORIES } from "./constants/data.js";
 import { CENTER_POSITION } from "./constants/data.js";
 import { CENTER_LAT_LONG } from "./constants/data.js";
+import { SEARCH_RADIUS } from "./constants/data.js";
 import { DEFAULT_ZOOM } from "./constants/data.js";
 
 export default {
@@ -38,7 +39,8 @@ export default {
   },
   async mounted() {
     const googleMapApi = await GoogleMapsApiLoader({
-      apiKey: this.apiKey
+      apiKey: this.apiKey,
+      libraries: ["places"]
     });
     this.google = googleMapApi;
     this.initializeMap();
@@ -57,8 +59,8 @@ export default {
         this.map.setZoom(DEFAULT_ZOOM);
       }
     },
-    searchQuery: function() {
-      console.log('searched!');
+    searchQuery: function(query) {
+      this.searchForQuery(query);
     }
   },
   methods: {
@@ -101,7 +103,8 @@ export default {
             CENTER_POSITION +
             "&categoryId=" +
             API_CATEGORIES[this.category].categories +
-            "&radius=50000" +
+            "&radius=" +
+            SEARCH_RADIUS +
             "&client_id=" +
             this.clientID +
             "&client_secret=" +
@@ -117,17 +120,19 @@ export default {
       let that = this;
       let markers = data.body.response.venues;
       $.each(markers, function(i, marker) {
+        // console.log(marker);
         let newMarker = new that.google.maps.Marker({
           position: { lat: marker.location.lat, lng: marker.location.lng },
-          map: that.map
+          map: that.map,
+          id: marker.id,
+          category: marker.categories[0].name,
+          name: marker.name
         });
         newMarker.addListener("click", function(evt) {
           // Smooth transition here somehow
           that.map.setCenter(newMarker.getPosition());
           that.map.setZoom(14);
-          // that.getActivityInfo(newMarker);
-          // Pass activity info to emit when it's working!!
-          that.$emit("$markerClicked", "data");
+          that.getGooglePlaceId(newMarker.name);
         });
         that.markers.push(newMarker);
       });
@@ -138,6 +143,76 @@ export default {
         marker.setMap(null);
       });
       this.markers = [];
+    },
+    getGooglePlaceId(name) {
+      let that = this;
+      let query = {
+        query: name,
+        locationBias: {
+          radius: 50000,
+          center: { lat: CENTER_LAT_LONG[0], lng: CENTER_LAT_LONG[1] }
+        },
+        fields: ["place_id"]
+      };
+      let service = new google.maps.places.PlacesService(this.map);
+      service.findPlaceFromQuery(query, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          let id = results[0].place_id;
+          that.getGooglePlaceDetails(id);
+        } else {
+          console.log("Not found!");
+        }
+      });
+    },
+    getGooglePlaceDetails(id) {
+      let that = this;
+      let request = {
+        placeId: id
+      };
+      let service = new google.maps.places.PlacesService(this.map);
+      service.getDetails(request, callback);
+      function callback(place, status) {
+        let placeData = {};
+        if (status === google.maps.places.PlacesServiceStatus.OK) { //necessary??
+          if (place.name) {
+            placeData.name = place.name;
+          }
+          if (place.formatted_phone_number) {
+            placeData.phoneNumber = place.formatted_phone_number;
+          }
+          if (place.opening_hours) {
+            placeData.openNow = place.opening_hours.open_now;
+          }
+          if (place.opening_hours) {
+            placeData.openTimes = place.opening_hours.weekday_text;
+          }
+          if (place.formatted_address) {
+            placeData.address = place.formatted_address;
+          }
+          if (place.user_ratings_total) {
+            placeData.userRatings = place.user_ratings_total;
+          }
+          if (place.distance) {
+            placeData.distance = place.distance;
+          }
+          if (place.website) {
+            placeData.website = place.website;
+          }
+          if (place.photos) {
+            placeData.photos = place.photos;
+          }
+          if (place.rating) {
+            placeData.rating = place.rating;
+          }
+          if (place.reviews) {
+            placeData.reviews = place.reviews;
+          }
+        }
+        that.$emit("$markerClicked", placeData);
+      }
+    },
+    searchForQuery: function(query) {
+      // Search query
     }
   }
 };

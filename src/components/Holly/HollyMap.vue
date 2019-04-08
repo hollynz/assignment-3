@@ -11,13 +11,18 @@
       :searchQuery="searchQuery"
       :mapConfig="mapConfig"
     />
-    <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
+    <HollyLanding
+      @$categorySelected="categorySelected"
+      @$searchForQuery="searchForQuery"
+      v-if="this.$parent.$data.landing"
+    />
     <HollyInfoScreen
       @$goHome="goHome"
       @$categorySelected="categorySelected"
       @$closeInfoContainer="closeInfoContainer"
       @$searchForQuery="searchForQuery"
       :category="category"
+      :placeData="placeData"
       :markerIsActive="markerIsActive"
       v-if="this.$parent.$data.info"
     />
@@ -44,7 +49,8 @@ export default {
       category: "",
       landing: false,
       markerIsActive: false,
-      searchQuery: ''
+      searchQuery: "",
+      placeData: {}
     };
   },
   computed: {
@@ -70,16 +76,15 @@ export default {
     landingFalse: function() {
       this.landing = false;
     },
-    markerClicked: function(data) {
+    markerClicked: function(placeData) {
+      this.placeData = placeData;
       this.markerIsActive = true;
     },
     closeInfoContainer: function() {
       this.markerIsActive = false;
     },
     searchForQuery: function(query) {
-      // Do something!!! Update data and emit to map
       this.searchQuery = query;
-      console.log(query);
     }
   }
 };
@@ -89,7 +94,7 @@ export default {
 <style scoped>
 .home {
   font-family: "Amatic SC", cursive;
-  /* font-family: 'Cabin', sans-serif; */
+  font-family: 'Cabin', sans-serif;
   /* search */
   /* font-family: 'Cuprum', sans-serif; */
   /* font-family: 'Dokdo', cursive; */
@@ -105,7 +110,7 @@ export default {
   /* font-family: 'Raleway', sans-serif; */
   /* font-family: 'Reenie Beanie', cursive; */
   /* font-family: 'Source Code Pro', monospace; */
-  /* font-family: 'Spinnaker', sans-serif; */
+  font-family: 'Spinnaker', sans-serif;
   /* font-family: 'Viga', sans-serif; */
 }
 </style>

@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- Transition on v-if?? -->
-    <ActivityInfoContainer @$closeInfoContainer="closeInfoContainer" v-show="markerIsActive" class="activity-info-container" />
+    <ActivityInfoContainer @$closeInfoContainer="closeInfoContainer" :placeData="placeData" v-show="markerIsActive" class="activity-info-container" />
   </div>
 </template>
 
@@ -30,7 +30,8 @@ export default {
   name: "HollyInfoScreen",
   props: {
     category: null,
-    markerIsActive: false
+    markerIsActive: false,
+    placeData: Object
   },
   components: {
     Logo,
@@ -52,7 +53,7 @@ export default {
       this.$emit('$closeInfoContainer');
     },
     searchForQuery: function(query) {
-      this.$emit('searchForQuery', query);
+      this.$emit('$searchForQuery', query);
     }
   }
 };
