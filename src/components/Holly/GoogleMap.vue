@@ -23,7 +23,8 @@ export default {
     mapConfig: Object,
     category: "",
     landing: false,
-    markerIsActive: Boolean
+    markerIsActive: Boolean,
+    searchQuery: ''
   },
   data() {
     return {
@@ -55,6 +56,9 @@ export default {
       if (!this.markerIsActive) {
         this.map.setZoom(DEFAULT_ZOOM);
       }
+    },
+    searchQuery: function() {
+      console.log('searched!');
     }
   },
   methods: {

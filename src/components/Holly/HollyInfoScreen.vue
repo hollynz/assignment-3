@@ -2,7 +2,7 @@
   <div class="info-screen">
     <div class="lhs-nav">
       <Logo @$goHome="goHome"/>
-      <SearchBar/>
+      <SearchBar @$searchForQuery="searchForQuery" />
       <div
         :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}"
       >
@@ -50,6 +50,9 @@ export default {
     },
     closeInfoContainer: function() {
       this.$emit('$closeInfoContainer');
+    },
+    searchForQuery: function(query) {
+      this.$emit('searchForQuery', query);
     }
   }
 };

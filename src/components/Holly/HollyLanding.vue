@@ -2,9 +2,9 @@
   <div class="landing">
     <Logo @$goHome="goHome"/>
     <div>
-      <h1>Choose your destiny:</h1>
+      <h1>Find your next adventure...</h1>
     </div>
-    <SearchBar/>
+    <SearchBar @$searchForQuery="searchForQuery"/>
     <div
       :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}"
     >
@@ -41,6 +41,9 @@ export default {
     goHome: function() {
       location.reload();
       this.$emit('$goHome');
+    },
+    searchForQuery: function(query) {
+      this.$emit('searchForQuery', query);
     }
   }
 };

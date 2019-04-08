@@ -8,6 +8,7 @@
       :landing="landing"
       :category="category"
       :markerIsActive="markerIsActive"
+      :searchQuery="searchQuery"
       :mapConfig="mapConfig"
     />
     <HollyLanding @$categorySelected="categorySelected" v-if="this.$parent.$data.landing"/>
@@ -15,6 +16,7 @@
       @$goHome="goHome"
       @$categorySelected="categorySelected"
       @$closeInfoContainer="closeInfoContainer"
+      @$searchForQuery="searchForQuery"
       :category="category"
       :markerIsActive="markerIsActive"
       v-if="this.$parent.$data.info"
@@ -41,7 +43,8 @@ export default {
     return {
       category: "",
       landing: false,
-      markerIsActive: false
+      markerIsActive: false,
+      searchQuery: ''
     };
   },
   computed: {
@@ -72,6 +75,11 @@ export default {
     },
     closeInfoContainer: function() {
       this.markerIsActive = false;
+    },
+    searchForQuery: function(query) {
+      // Do something!!! Update data and emit to map
+      this.searchQuery = query;
+      console.log(query);
     }
   }
 };
