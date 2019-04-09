@@ -30,7 +30,7 @@ export default {
   name: "HollyInfoScreen",
   props: {
     category: null,
-    markerIsActive: false,
+    markerIsActive: Boolean,
     placeData: Object
   },
   components: {

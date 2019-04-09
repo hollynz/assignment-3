@@ -70,28 +70,28 @@ export default {
         zoom: DEFAULT_ZOOM,
         mapTypeControl: true,
         mapTypeControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT
+          position: this.google.maps.ControlPosition.TOP_RIGHT
         },
         fullscreenControl: true,
         fullscreenControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT
+          position: this.google.maps.ControlPosition.TOP_RIGHT
         },
         streetViewControl: true,
         streetViewControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_TOP
+          position: this.google.maps.ControlPosition.RIGHT_TOP
         },
         zoomControl: true,
         zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_BOTTOM
+          position: this.google.maps.ControlPosition.RIGHT_BOTTOM
         },
         center: { lat: CENTER_LAT_LONG[0], lng: CENTER_LAT_LONG[1] }
       });
       this.map.getStreetView().setOptions({
         addressControlOptions: {
-          position: google.maps.ControlPosition.TOP_CENTER
+          position: this.google.maps.ControlPosition.TOP_CENTER
         },
         panControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_TOP
+          position: this.google.maps.ControlPosition.RIGHT_TOP
         }
       });
     },
@@ -156,7 +156,7 @@ export default {
       };
       let service = new google.maps.places.PlacesService(this.map);
       service.findPlaceFromQuery(query, function(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
+        if (status === that.google.maps.places.PlacesServiceStatus.OK) {
           let id = results[0].place_id;
           that.getGooglePlaceDetails(id);
         } else {
@@ -169,11 +169,11 @@ export default {
       let request = {
         placeId: id
       };
-      let service = new google.maps.places.PlacesService(this.map);
+      let service = new that.google.maps.places.PlacesService(this.map);
       service.getDetails(request, callback);
       function callback(place, status) {
         let placeData = {};
-        if (status === google.maps.places.PlacesServiceStatus.OK) { //necessary??
+        if (status === that.google.maps.places.PlacesServiceStatus.OK) { //necessary??
           if (place.name) {
             placeData.name = place.name;
           }
@@ -211,9 +211,9 @@ export default {
         that.$emit("$markerClicked", placeData);
       }
     },
-    searchForQuery: function(query) {
+    // searchForQuery: function(query) {
       // Search query
-    }
+    // }
   }
 };
 </script>
