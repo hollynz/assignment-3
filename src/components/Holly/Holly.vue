@@ -38,7 +38,7 @@ import { mapSettings } from "./constants/mapSettings.js";
 import { CENTER_LAT_LONG } from "./constants/data.js";
 
 export default {
-  name: "HollyMap",
+  name: "Holly",
   components: {
     GoogleMap,
     HollyLanding,

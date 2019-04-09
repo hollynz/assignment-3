@@ -1,19 +1,22 @@
 <template>
-  <div class="landing">
-    <Logo @$goHome="goHome"/>
-    <div>
-      <h1>Find your next adventure...</h1>
+  <transition name="fade" mode="out-in">
+    <div class="landing">
+      <router-link class="homeButton" :to="'/'"><i class="fas fa-chevron-left"></i></router-link>
+      <Logo @$goHome="goHome"/>
+      <div>
+        <h1>Find your next adventure...</h1>
+      </div>
+      <SearchBar @$searchForQuery="searchForQuery"/>
+      <div
+        :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}"
+      >
+        <ButtonBike @$categorySelected="categorySelected"/>
+        <ButtonHiking @$categorySelected="categorySelected"/>
+        <ButtonWater @$categorySelected="categorySelected"/>
+        <ButtonActivities @$categorySelected="categorySelected"/>
+      </div>
     </div>
-    <SearchBar @$searchForQuery="searchForQuery"/>
-    <div
-      :class="{buttonsLanding: this.$parent.$parent.$data.landing, buttonsInfo: this.$parent.$parent.$data.info}"
-    >
-      <ButtonBike @$categorySelected="categorySelected"/>
-      <ButtonHiking @$categorySelected="categorySelected"/>
-      <ButtonWater @$categorySelected="categorySelected"/>
-      <ButtonActivities @$categorySelected="categorySelected"/>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -49,6 +52,9 @@ export default {
 };
 </script>
 
+<style scoped src="./constants/navCSS.css">
+</style>
+
 <style scoped>
 .landing {
   position: absolute;
@@ -63,7 +69,23 @@ export default {
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
 }
-</style>
-
-<style scoped src="./constants/navCSS.css">
+.homeButton {
+  align-self: flex-start;
+  margin: 2%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+}
+.homeButton:focus {
+  outline: none;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

@@ -4,9 +4,8 @@ import VueRouter from "vue-router";
 import VueResource from "vue-resource";
 
 import Home from "./components/Home.vue";
-
 import Geoff from "./components/Geoff/Geoff.vue";
-import HollyMap from "./components/Holly/HollyMap.vue";
+import Holly from "./components/Holly/Holly.vue";
 import Jack from "./components/Jack/Jack.vue";
 import Jeremy from "./components/Jeremy/Jeremy.vue";
 
@@ -18,7 +17,7 @@ Vue.use(VueResource);
 const routes = [
   {path: "/", component: Home },
   {path: "/geoff", component: Geoff},
-  {path: "/hollyMap", component: HollyMap},
+  {path: "/holly", component: Holly},
   {path: "/jack", component: Jack},
   {path: "/jeremy", component: Jeremy},
 ];
